@@ -4,6 +4,15 @@
 
 📌 **Nota:** Este proyecto se encuentra en fase de desarrollo.
 
+## Vista previa 
+
+### Pagina principal
+
+![Home](assets/1.png)
+![Home](assets/2.png)
+
+
+
 🔗 Repositorio oficial: [Verde Esmeralda](https://github.com/carlos03777/verdeEsmeralda.git)
 
 ---
