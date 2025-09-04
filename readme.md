@@ -14,7 +14,7 @@
 
 
 🔗 Repositorio oficial: [Verde Esmeralda](https://github.com/carlos03777/verdeEsmeralda.git)
-
+🔗 Documentación en Notion: [Verde Esmeralda](https://balanced-knave-afa.notion.site/Verde-Esmeralda-15a3d0a8e8488095a6bcecf7790be9e2?source=copy_link)
 ---
 
 ## 🚀 Características principales
