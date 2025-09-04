@@ -82,7 +82,15 @@
 
                 <!-- Íconos -->
                 <a href="#" class="text-dark position-relative"><i class="bi bi-person fs-5"></i></a>
-                <a href="#" class="text-dark position-relative"><i class="bi bi-cart fs-5"></i></a>
+                <a href="{% url 'carrito-ver' %}" class="text-dark position-relative">
+    <i class="bi bi-cart fs-5"></i>
+    {% if carrito_cantidad > 0 %}
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{ carrito_cantidad }}
+      </span>
+    {% endif %}
+</a>
+
             </div>
         </div>
     </div>

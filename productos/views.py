@@ -1,7 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
+from django.shortcuts import render, get_object_or_404
+from .models import Producto
 
 def index(request):
-    return HttpResponse("Vista de Productos")
+    productos = Producto.objects.all()
+    return render(request, 'productos/lista_productos.html', {'productos': productos})
 
+def detalle(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    return render(request, 'productos/detalle_producto.html', {'producto': producto})

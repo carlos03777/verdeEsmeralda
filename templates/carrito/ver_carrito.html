@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Carrito{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">Tu carrito</h2>
+
+    {% if cart %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+{% for item in cart %}
+<tr>
+    <td>{{ item.producto.nombre }}</td>
+    <td>${{ item.precio }}</td>
+    <td>
+    <form action="{% url 'carrito-actualizar' item.producto.id %}" method="post" class="d-flex gap-2 align-items-center actualizar-form">
+        {% csrf_token %}
+        <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1"
+               class="form-control form-control-sm text-center" style="width: 70px;">
+        <button type="submit" class="btn btn-primary btn-sm">Actualizar</button>
+    </form>
+</td>
+
+    <td>${{ item.subtotal }}</td>
+    <td>
+        <a href="{% url 'carrito-eliminar' item.producto.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="5" class="text-center">Tu carrito está vacío.</td>
+</tr>
+{% endfor %}
+</tbody>
+<tfoot>
+<tr>
+    <td colspan="3" class="text-end fw-bold">Total:</td>
+    <td colspan="2" class="fw-bold">${{ cart.get_total }}</td>
+</tr>
+</tfoot>
+
+            </table>
+        </form>
+
+        <div class="d-flex justify-content-between mt-3">
+            <a href="{% url 'carrito-limpiar' %}" class="btn btn-warning">Vaciar carrito</a>
+            <a href="{% url 'checkout' %}" class="btn btn-success">Continuar compra</a>
+        </div>
+    {% else %}
+        <p>Tu carrito está vacío.</p>
+    {% endif %}
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Captura todos los inputs de cantidad
+    document.querySelectorAll(".cantidad-input").forEach(input => {
+        input.addEventListener("change", () => {
+            input.closest("form").submit();  // Enviar el formulario automáticamente
+        });
+    });
+});
+</script>
+
+</div>
+{% endblock %}
